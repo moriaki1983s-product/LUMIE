@@ -1,4 +1,4 @@
-# SUNIE - 産業向けAI-WEBアプリケーション(Scholar & Professor)
+# LUMIE - 産業向けAI-WEBアプリケーション(Scholar & Professor)
 ![SUNIEロゴ](./logo.jpg)
 
 
