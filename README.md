@@ -66,17 +66,17 @@ Layer-5 : Validation-Layer（検証層）
 
 
 
-## LUMIE-Teacherのディレクトリ構造
+## LUMIE-Professorのディレクトリ構造
 
 
 
 
-## SUNIE-Studentの使い方
+## SUNIE-Scholarの使い方
 
 
 
 
-## SUNIE-Teacherの使い方
+## SUNIE-Professorの使い方
 
 
 
