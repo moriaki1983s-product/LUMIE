@@ -1,12 +1,11 @@
-# LUMIE - 研究向けAI-WEBアプリケーション(Scholar & Professor)
+# LUMIE - 研究向けAI-WEBアプリケーション(Client & Server)
 ![SUNIEロゴ](./logo.jpg)
 
 
 
 
-## 本件プロジェクト(2本立てアプリ)の共通の設計思想＆設計哲学
-導入に、別途、外部エンジンや外部サービスなしで、ローカル環境・ローカルネットワークで動作が完結し、  
-「GitHubクローン」と「pip install」をするだけで、誰でも、即、簡単に実行して試せることを目指します。
+## 本件プロジェクトのシステム構成(LUMIE-System)
+「Client(Qtベース)」→「Nginx」→「RedisQue or RabbitMQ」→「Celery」→「uvicorn」→「Server(FastAPIベース)」。
 
 
 
@@ -62,22 +61,22 @@ Layer-5 : Validation-Layer（検証層）
 
 
 
-## LUMIE-Scholarのディレクトリ構造
+## LUMIE-Clientのディレクトリ構造
 
 
 
 
-## LUMIE-Professorのディレクトリ構造
+## LUMIE-Serverのディレクトリ構造
 
 
 
 
-## SUNIE-Scholarの使い方
+## LUMIE-Clientの使い方
 
 
 
 
-## SUNIE-Professorの使い方
+## LUMIE-Serverの使い方
 
 
 
