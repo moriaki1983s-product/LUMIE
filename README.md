@@ -5,12 +5,12 @@
 
 
 ## 本件プロジェクトのシステム構成(LUMIE-System)
-「Client(Qtベース)」→「Nginx」→「RedisQue or RabbitMQ」→「Celery」→「uvicorn」→「Server(FastAPIベース)」。
+「Client(Qtベース)」⇔「Nginx」⇔「RedisQue or RabbitMQ」⇔「Celery」⇔「uvicorn」⇔「Server(FastAPIベース)」。
 
 
 
 
-## 本件プロジェクト(2本立てアプリ)の共通の仕様・設計案(LUMIE-Architecture)
+## 本件プロジェクト(2本立てアプリ)の共通原理(LUMIE-Architecture)
 本件アプリは、ルールベースとニューラルネット(LLM)を混成したハイブリッド次世代AI(AGI)を目指します。  
 そのために「ハイブリッド・ウェハ・アーキテクチャ」を採用します。  
 
