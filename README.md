@@ -5,7 +5,7 @@
 
 
 ## 本件プロジェクトのシステム構成(LUMIE-System)
-「Client(SvelteKitベース)」⇔「Nginx」⇔「RedisQue or RabbitMQ」⇔「Celery」⇔「uvicorn」⇔「Server(FastAPIベース)」。
+「Client(SvelteKitベース)」⇔「Nginx」⇔「RedisQue」⇔「Celery」⇔「uvicorn」⇔「Server(FastAPIベース)」⇔「PostgreSQL」。
 
 
 
