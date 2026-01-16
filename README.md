@@ -6,10 +6,12 @@
 
 ## 本件プロジェクトのシステム構成(LUMIE-System)
 **技術スタック＆システム全体のデータの流れ**  
+
 「Client(SvelteKit)」⇔「Nginx」⇔「Server(FastAPI + uvicorn)」⇔  
 「RedisQue」⇔「Celery(Celery-Worker)」⇔「PostgreSQL + pgvector + tsvector」。  
 
 **技術選定の理由**  
+
 「Nginx」「RedisQue」「Celery」「PostgreSQL」については、将来的なユーザー数増大や、システムの拡張を見越した技術選定です。
 また、「uvicorn」については、FastAPIをバックエンドにする関係で必然的な選択になっています。
 特に、「Client(SvelteKit)」「Server(FastAPI + uvicorn)」については、
