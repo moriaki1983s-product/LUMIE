@@ -1,0 +1,65 @@
+version: "3.9"
+
+services:
+  client:
+    build: ./LUMIE-Client
+    container_name: lumie_client
+    ports:
+      - "3000:80"
+    depends_on:
+      - nginx
+
+  nginx:
+    image: nginx:alpine
+    container_name: lumie_nginx
+    volumes:
+      - ./LUMIE-Client/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+
+  server:
+    build: ./LUMIE-Server
+    container_name: lumie_server
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/lumie
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    build: ./LUMIE-Server
+    container_name: lumie_worker
+    command: celery -A app.celery_app worker --loglevel=INFO
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/lumie
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - server
+      - redis
+      - db
+
+  redis:
+    image: redis:alpine
+    container_name: lumie_redis
+    ports:
+      - "6379:6379"
+
+  db:
+    image: postgres:15
+    container_name: lumie_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: lumie
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
