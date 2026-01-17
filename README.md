@@ -10,6 +10,15 @@
 「Client(SvelteKit)」⇔「Nginx」⇔「Server(FastAPI + uvicorn)」⇔  
 「RedisQue」⇔「Celery(Celery-Worker)」⇔「PostgreSQL + pgvector + tsvector」。  
 
+**個々の技術の目的と役割**  
+
+「Client(SvelteKit)」＝Web-UI/Web-UX(フロントエンド)。  
+「Nginx」＝非同期Webサーバー。  
+「Server(FastAPI + uvicorn)」＝API＆ダッシュボード(バックエンド)。  
+「RedisQue」＝メッセージキュー(タスク要求の整理)。  
+「Celery(Celery-Worker)」＝タスクワーカーの生成と管理。  
+「PostgreSQL + pgvector + tsvector」＝データベース(ベクトル検索＆キーワード検索)。 
+
 **技術選定の理由**  
 
 「Nginx」「RedisQue」「Celery」「PostgreSQL」については、将来的なユーザー数増大や、システムの拡張を見越した技術選定です。
