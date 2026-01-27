@@ -12,7 +12,7 @@ Client(Streamlit) ←→ SQLite
 ⇅  
 Nginx  
 ⇅  
-Server(Flask) ←→ PostgreSQL/ElasticSearch  
+Server(FastAPI) ←→ PostgreSQL/ElasticSearch  
 ⇅  
 ──────────── System-Core ────────────  
 Celery  
@@ -27,7 +27,7 @@ Celery-Worker ←→ PostgreSQL/ElasticSearch
 「Server(Flask + gunicorn)」←→「PostgreSQL」「ElasticSearch」。  
 
 ②「Client(Streamlit)」←→「Nginx」←→  
-「Server(Flask + gunicorn)」←→「System-Core」。  
+「Server(FastAPI + uvicorn)」←→「System-Core」。  
 ※「System-Core」＝  
 「Celery」→「RedisQue」←→「Celery-Worker」←→  
 「PostgreSQL」「ElasticSearch」。  
@@ -39,7 +39,7 @@ Celery-Worker ←→ PostgreSQL/ElasticSearch
 
 「Client(Streamlit)」＝Web-UI/Web-UX(フロントエンド)。  
 「Nginx」＝非同期Webサーバー。  
-「Server(Flask + gunicorn)」＝API＆ダッシュボード(バックエンド)。  
+「Server(FastAPI + uvicorn)」＝API＆ダッシュボード(バックエンド)。  
 「RedisQue」＝メッセージキュー(タスク要求の整理)。  
 「Celery」＝タスクワーカーの生成と管理。  
 「PostgreSQL」＝保存特化データベース。  
@@ -49,14 +49,13 @@ Celery-Worker ←→ PostgreSQL/ElasticSearch
 
 「Nginx」「RedisQue」「Celery」「PostgreSQL」「ElasticSearch」については、  
 将来的なユーザー数の増大や、システムの拡張を見越した技術選定です。  
-また、「gunicorn」については、Flaskをバックエンドに採用する関係で必然的な選択になっています。  
-特に、「Client(SvelteKit)」「Server(FastAPI + uvicorn)」については、  
+特に、「Server(FastAPI + uvicorn)」については、  
 これは、SUNIEの事情と比較して、日本の大学のような、より自由で制限の少ない環境において、  
 よりモダンで計算資源の有効利用を可能とするために、このような選定としました。
 
-## 本件プロジェクト(2本立てアプリ)の共通原理(LUMIE-Architecture)
-本件アプリは、ルールベースとニューラルネット(LLM)を混成したハイブリッド次世代AI(AGI)を目指します。  
-そのために「ハイブリッド・ウェハ・アーキテクチャ」を採用します。  
+## 本件プロジェクトの中心・中核原理(LUMIE-Architecture)
+本件プロジェクトの、いわば「心臓部となる部分」(Celery式の推論ワーカー)は、  
+ルールベースとニューラルネット(LLM)を混成したハイブリッド仕様となっています。  
 
 **ハイブリッド・ウェハ・アーキテクチャ**
 
