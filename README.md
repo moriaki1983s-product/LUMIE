@@ -3,33 +3,55 @@
 
 
 
-
 ## 本件プロジェクトのシステム構成(LUMIE-System)
-**技術スタック＆システム全体のデータの流れ**  
+**技術スタック＆システム全体のデータフロー**
+![SUNIEダイアグラム](./diagram.jpg)
 
-「Client(SvelteKit)」⇔「Nginx」⇔「Server(FastAPI + uvicorn)」⇔  
-「RedisQue」⇔「Celery(Celery-Worker)」⇔「PostgreSQL + pgvector + tsvector」。  
+Client(Streamlit) ←→ SQLite  
+⇅  
+Nginx  
+⇅  
+Server(Flask) ←→ PostgreSQL/ElasticSearch  
+⇅  
+──────────── System-Core ────────────  
+Celery  
+↓  
+RedisQueue  
+⇅  
+Celery-Worker ←→ PostgreSQL/ElasticSearch  
+
+制御＆データフローの詳細  
+
+①「Client(Streamlit)」←→「Nginx」←→  
+「Server(Flask + gunicorn)」←→「PostgreSQL」「ElasticSearch」。  
+
+②「Client(Streamlit)」←→「Nginx」←→  
+「Server(Flask + gunicorn)」←→「System-Core」。  
+※「System-Core」＝  
+「Celery」→「RedisQue」←→「Celery-Worker」←→  
+「PostgreSQL」「ElasticSearch」。  
+
+①は、Server(ダッシュボード)から観た、DBアクセスのルート。  
+②は、Celery-Workerから観た、タスク処理に伴うDBアクセスのルート。  
 
 **個々の技術の目的と役割**  
 
-「Client(SvelteKit)」＝Web-UI/Web-UX(フロントエンド)。  
+「Client(Streamlit)」＝Web-UI/Web-UX(フロントエンド)。  
 「Nginx」＝非同期Webサーバー。  
-「Server(FastAPI + uvicorn)」＝API＆ダッシュボード(バックエンド)。  
+「Server(Flask + gunicorn)」＝API＆ダッシュボード(バックエンド)。  
 「RedisQue」＝メッセージキュー(タスク要求の整理)。  
-「Celery(Celery-Worker)」＝タスクワーカーの生成と管理。  
-「PostgreSQL + pgvector + tsvector」＝データベース(ベクトル検索＆キーワード検索)。 
+「Celery」＝タスクワーカーの生成と管理。  
+「PostgreSQL」＝保存特化データベース。  
+「ElasticSearch」＝検索特化データベース。  
 
 **技術選定の理由**  
 
-「Nginx」「RedisQue」「Celery」「PostgreSQL」については、  
-将来的なユーザー数増大や、システムの拡張を見越した技術選定です。  
-また、「uvicorn」については、FastAPIをバックエンドにする関係で必然的な選択になっています。  
+「Nginx」「RedisQue」「Celery」「PostgreSQL」「ElasticSearch」については、  
+将来的なユーザー数の増大や、システムの拡張を見越した技術選定です。  
+また、「gunicorn」については、Flaskをバックエンドに採用する関係で必然的な選択になっています。  
 特に、「Client(SvelteKit)」「Server(FastAPI + uvicorn)」については、  
 これは、SUNIEの事情と比較して、日本の大学のような、より自由で制限の少ない環境において、  
 よりモダンで計算資源の有効利用を可能とするために、このような選定としました。
-
-
-
 
 ## 本件プロジェクト(2本立てアプリ)の共通原理(LUMIE-Architecture)
 本件アプリは、ルールベースとニューラルネット(LLM)を混成したハイブリッド次世代AI(AGI)を目指します。  
@@ -57,12 +79,10 @@ Layer-5 : Validation-Layer（検証層）
 
 
 
-
 ## もっとも強調・アピールしたい点
 私の構想・開発する、この次世代AIの技術的アイデアによって、  
 長年にわたって議論されてきた「フレーム問題」「ハルシネーション問題」「ブラックボックス問題」が解決されて、  
 「人間のように 物事を知覚したり 思考したり 判断したり 表現できるAI」を実現させたいと思っています。
-
 
 
 
@@ -74,7 +94,6 @@ Layer-5 : Validation-Layer（検証層）
 
 
 
-
 ## 開発状況をチェックして下さっている方々へ
 本件プロジェクトのロゴは「月光に照らされる大地」をイメージして作成しました。  
 プロジェクトの進捗を見守ってくださる方々には、感謝の気持ちで一杯です・・・。  
@@ -82,24 +101,11 @@ Layer-5 : Validation-Layer（検証層）
 
 
 
-
-## LUMIE-Clientのディレクトリ構造
-
+## LUMIEのディレクトリ構造
 
 
 
-## LUMIE-Serverのディレクトリ構造
-
-
-
-
-## LUMIE-Clientの使い方
-
-
-
-
-## LUMIE-Serverの使い方
-
+## LUMIEの使い方
 
 
 
@@ -114,7 +120,6 @@ Layer-5 : Validation-Layer（検証層）
 したがって、コードを参考にした運用は必ずご自身の責任と判断において行ってください。
 コードの内容については、できる限り正確を期していますが、コードの内容に基づく運用結果について、作者は一切の責任を負いかねます。
 あらかじめご了承ください。
-
 
 
 
