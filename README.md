@@ -111,8 +111,15 @@ LUMIE/
 │  
 ├── server/  
 │   ├── app.py  
-│   ├── requirements.txt  
-│   └── Dockerfile  
+│   ├── celery_app.py  
+│   ├── task/  
+│   │   ├── __init__.py  
+│   │   └── task.py  
+│   └── requirements.txt  
+│  
+├── worker/  
+│   ├── Dockerfile  
+│   └── start-worker.sh  
 │  
 ├── nginx/  
 │   └── nginx.conf  
