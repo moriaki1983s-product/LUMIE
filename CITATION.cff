@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use LUMIE in your research, development, or educational work, please cite this repository."
+title: "LUMIE: Layered Understanding & Meaning Inference Engine"
+abstract: >
+  LUMIE is a meaning-centered inference framework designed to model layered
+  conceptual structures, deep semantic relationships, and transparent reasoning
+  processes. It provides a modular architecture with Streamlit, FastAPI,
+  Celery, Redis, and Elasticsearch, enabling scalable semantic computation and
+  interpretable inference pipelines for educational and research applications.
+
+authors:
+  - family-names: Morishita
+    given-names: Akihiro
+    # ORCID があればここに追記できます
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+
+version: "0.1.0"
+date-released: "2025-01-01"
+
+repository-code: "https://github.com/moriaki1983s-product/LUMIE"
+license: "MIT"
+
+keywords:
+  - research AI
+  - inference engine
+  - structured learning
+  - knowledge representation
+  - LUMIE
+  - reasoning transparency
+  - AI architecture
+
+preferred-citation:
+  type: software
+  authors:
+    - family-names: Morishita
+      given-names: Akihiro
+  title: "LUMIE: Layered Understanding & Meaning Inference Engine"
+  year: 2025
+  url: "https://github.com/moriaki1983s-product/LUMIE"
