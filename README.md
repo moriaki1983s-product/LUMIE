@@ -103,6 +103,24 @@ Layer-5 : Validation-Layer（検証層）
 
 ## LUMIEのディレクトリ構造
 
+LUMIE/  
+├── client/  
+│   ├── app.py  
+│   ├── requirements.txt  
+│   └── Dockerfile  
+│  
+├── server/  
+│   ├── app.py  
+│   ├── requirements.txt  
+│   └── Dockerfile  
+│  
+├── nginx/  
+│   └── nginx.conf  
+│  
+├── docker-compose.yml  
+├── CITATION.cff  
+└── README.md
+
 
 
 ## LUMIEの使い方
